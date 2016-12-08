@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>table首行首列固定</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<style type="text/css">
+th,td{margin:0;padding:0;}
+table {border-collapse:collapse;border-spacing:0;}
+td{outline: none;}
+body{padding-left: 100px;padding-top: 20px;}
+.table-out {
+	position: relative;
+	height: 333px;
+    width: 1000px;
+	border: 1px solid #cacbcc;
+	border-bottom: 1px solid #cacbcc;
+	overflow: hidden;
+	border-top:1px solid #cacbcc;
+}
+.table-top {
+	overflow: hidden;
+}
+.table-top th,.table-left-top th {
+    height: 50px;
+    color: #8a9399;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #fafafa;
+    border-bottom: 1px solid #cacbcc;
+}
+.table-top th:not(:last-child){
+    border-right: 1px solid #e3e5e6;
+}
+.width-100 {
+    width: 100px;
+    min-width: 100px;
+}
+.width-200 {
+    width: 200px;
+    min-width: 200px;
+}
+.table-main{
+  overflow: scroll;
+  border-top: none;
+  position: relative;
+  height: 281px;
+}
+.table-main td,.table-left td,.table-left-top td {
+	text-align: center;
+    height: 40px;
+    color: #2e3133;
+}
+.table-main tr:not(:last-child),.table-left tr:not(:last-child){
+    border-bottom: 1px solid #e3e5e6;
+}
+.table-main td:not(:last-child),.table-left td,.table-left-top td {
+    border-right: 1px solid #e3e5e6;
+}
+.table-left {
+  display: inline-block;
+  position: absolute;
+  top: 51px;
+  background-color: #fff;
+  left: 1px;
+}
+.table-left-top {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #ccc;
+  left: 1px; 
+}
+.table-left-top th{
+    border-right: 1px solid #e3e5e6;
+    border-bottom: 1px solid #cacbcc;
+}
+
+.nicescroll-table {
+	margin-top: 50px;
+}
+.nicescroll-table .table-main{
+	overflow: hidden;
+}
+
+h1{
+	margin-bottom: 50px;
+}
+</style>
+<body>
+	<h1>冻结行列demo</h1>
+	<div class="table-out">
+	    <div class="table-top" >
+	        <table>
+	            <thead>
+	                <tr>
+	                    <th class="width-100">学生名字</th>
+	                    <th class="width-100">学号</th>
+	                    <th class="width-100">出勤次数</th>
+	                    <th class="width-200">周一</th>
+	                    <th class="width-200">周二</th>
+	                    <th class="width-200">周三</th>
+	                    <th class="width-200">周四</th>
+	                    <th class="width-200">周五</th>
+	                    <th class="width-200">周六</th>
+	                    <th class="width-200" style="min-width:220px;width:220px;">周日（注意这里要加20px）</th>
+	                </tr>
+	            </thead>
+	        </table>
+	    </div>
+	    <div class="table-main">
+	        <table>
+	            <tbody>
+	                <tr>
+	                	<td class="width-100">张小月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>   
+	                <tr>
+	                	<td class="width-100">张月月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张小小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大大</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张小大</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	            </tbody>     
+	        </table>                
+	    </div>
+	    <div class="table-left" >
+	        <table>
+	            <tbody>
+	                <tr>
+	                	<td class="width-100">张小月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>   
+	                <tr>
+	                	<td class="width-100">张月月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张小小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大大</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张小大</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	            </tbody>
+	        </table>  
+	    </div> 
+	    <div class="table-left-top" >
+	        <table>
+	            <thead>
+	                <tr>
+	                    <th class="width-100">学生名字</th>
+	                    <th class="width-100">学号</th>
+	                    <th class="width-100">出勤次数</th>
+	                </tr>
+	            </thead>
+	        </table>
+	    </div>
+	</div> 
+
+	<div class="table-out nicescroll-table">
+	    <div class="table-top" >
+	        <table>
+	            <thead>
+	                <tr>
+	                    <th class="width-100">学生名字</th>
+	                    <th class="width-100">学号</th>
+	                    <th class="width-100">出勤次数</th>
+	                    <th class="width-200">周一</th>
+	                    <th class="width-200">周二</th>
+	                    <th class="width-200">周三</th>
+	                    <th class="width-200">周四</th>
+	                    <th class="width-200">周五</th>
+	                    <th class="width-200">周六</th>
+	                    <th class="width-200">周日</th>
+	                </tr>
+	            </thead>
+	        </table>
+	    </div>
+	    <div class="table-main">
+	        <table>
+	            <tbody>
+	                <tr>
+	                	<td class="width-100">张小月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                	<td class="width-200">不错</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>   
+	                <tr>
+	                	<td class="width-100">张月月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张小小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大大</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张小大</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+	                	<td class="width-200"></td>
+                	<tr>
+                		<td class="width-100">张大小</td>
+                		<td class="width-100">2123432</td>
+                		<td class="width-100">7</td>
+                		<td class="width-200"></td>
+                		<td class="width-200"></td>
+                		<td class="width-200"></td>
+                		<td class="width-200"></td>
+                		<td class="width-200"></td>
+                		<td class="width-200"></td>
+                		<td class="width-200"></td>
+                	</tr>
+	                </tr>
+	            </tbody>     
+	        </table>                
+	    </div>
+	    <div class="table-left">
+	        <table>
+	            <tbody>
+	                <tr>
+	                	<td class="width-100">张小月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>   
+	                <tr>
+	                	<td class="width-100">张月月</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张小小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大大</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张小大</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	                <tr>
+	                	<td class="width-100">张大小</td>
+	                	<td class="width-100">2123432</td>
+	                	<td class="width-100">7</td>
+	                </tr>
+	            </tbody>
+	        </table>  
+	    </div> 
+	    <div class="table-left-top" >
+	        <table>
+	            <thead>
+	                <tr>
+	                    <th class="width-100">学生名字</th>
+	                    <th class="width-100">学号</th>
+	                    <th class="width-100">出勤次数</th>
+	                </tr>
+	            </thead>
+	        </table>
+	    </div>
+	</div>    
+</body>
+<script src="./library/jquery-2.1.1.js"></script>
+<!-- jquery.nicescroll是基于jquery的一款滚动条插件 -->
+<script src="./library/jquery.nicescroll.min.js"></script>
+<script type="text/javascript">
+    // 不使用nicescroll
+    var tableLeftTop1 = parseInt($('.table-out:not(.nicescroll-table) .table-left').css('top'));
+    $('.table-out:not(.nicescroll-table) .table-main').scroll(function() {
+        var scrollLeft = $(this).scrollLeft();
+        var scrollTop = tableLeftTop1 - $(this).scrollTop()+'px';
+        $('.table-out:not(.nicescroll-table) .table-left').css('top',scrollTop);
+        $('.table-out:not(.nicescroll-table) .table-top').scrollLeft(scrollLeft);
+    });
+
+    // 使用nicescroll
+	$('.nicescroll-table .table-main').niceScroll({cursorcolor: "#8a9399"});
+	var tableLeftTop2 = parseInt($('.nicescroll-table .table-left').css('top'));
+	$('.nicescroll-table .table-main').scroll(function() {
+	    var scrollLeft = $(this).scrollLeft();
+	    var scrollTop = tableLeftTop2 - $(this).scrollTop()+'px';
+	    $('.nicescroll-table .table-left').css('top',scrollTop);
+	    $('.nicescroll-table .table-top').scrollLeft(scrollLeft);
+	});
+</script>
+</html>
